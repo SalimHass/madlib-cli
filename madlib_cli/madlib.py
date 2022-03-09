@@ -22,15 +22,19 @@ def read_template(path):
     """
     this function will red the file from the .txt file in path. if the path is not found it will expect and error.
     """
+    isNotFound = False
     try:
         f = open(path)
     except FileNotFoundError:
         content = "Error: Sorry the file does not exist!"
-     
+        isNotFound = True
+             
     else:
         content = f.read()
         f.close()
     finally:
+        if(isNotFound):
+            raise FileNotFoundError
         return content
 
 def parse_template(content):
